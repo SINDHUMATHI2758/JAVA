@@ -1,0 +1,31 @@
+import java.util.*;
+public class Main
+{
+    public static boolean ispalim(String s){
+        int [] character=new int[26];
+        int oddcount=0;
+        int index;
+        for(char i:s.toCharArray()){
+            index=Character.toLowerCase(i)-'a';
+            character[index]++;
+            if(character[index]%2==0){
+                oddcount++;
+            }
+            else{
+                oddcount--;
+            }
+        }
+        return oddcount<=1;
+    }
+	public static void main(String[] args) {
+		Scanner SC = new Scanner(System.in);
+		String S=SC.nextLine();
+		if(ispalim(S)){
+		    System.out.println("TRUE");
+		}
+		else{
+		    System.out.println("FALSE");
+		}
+		
+	}
+}
