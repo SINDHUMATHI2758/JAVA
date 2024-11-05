@@ -1,0 +1,32 @@
+import java.util.*;
+public class Main
+{
+	public static boolean isPalim(String s) {
+		int character[]=new int [26];
+		for (char i : s.toCharArray()) {
+			if (Character.isLetter(i)) {
+				character[Character.toLowerCase(i)-'a']++;
+			}
+		}
+
+		int oddcount=0;
+		for(int i=0; i<26; i++) {
+			if(character[i]%2!=0) {
+				oddcount++;
+			}
+		}
+		return oddcount<=1;
+	}
+	public static void main(String[] args) {
+		Scanner SC = new Scanner(System.in);
+		String S=SC.next();
+		if(isPalim(S)) {
+			System.out.println("True");
+		}
+		else {
+			System.out.println("False");
+		}
+
+
+	}
+}
