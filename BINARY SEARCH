@@ -1,0 +1,42 @@
+import java.util.*;
+public class Main
+{
+    public static int bin(int a[],int t){
+        Arrays.sort(a);
+        int n=a.length;
+        int low=0;
+        int high=n-1;
+        int mid;
+        
+        while(low<=high){
+            mid=low+(high-low)/2;
+            if(a[mid]==t){
+                return mid;
+            }
+            else if(a[mid]>t){
+               
+                high=mid-1;
+            }
+            else{
+                low=mid+1; 
+            }
+           
+        }
+
+            return -1;
+        
+         
+    }
+	public static void main(String[] args) {
+	    Scanner SC = new Scanner(System.in);
+		int a[]={20,30,40,50,65,75};
+		System.out.print("Enter the element to be search: ");
+		int n=SC.nextInt();
+		int result=bin(a,n);
+		if(result==-1){
+		    System.out.println("Element not found");
+		}else{
+		System.out.println("Element present ant index: "+result);
+		}
+	}
+}
