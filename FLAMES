@@ -1,0 +1,28 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		String  bname,gname;
+		Scanner SC = new Scanner(System.in);
+		System.out.print("Enter name1: ");
+		bname=SC.nextLine();
+			System.out.print("Enter name2: ");
+			gname=SC.nextLine();
+			int a=bname.length();
+			int b=gname.length();
+			char [] bname1=new char[a];
+			bname1=bname.toCharArray();
+			char [] gname1=new char[b];
+			gname1=gname.toCharArray();
+			for(int i=0;i<a;i++){
+			    for(int j=0;j<b;j++){
+			        if(bname1[i]==gname1[j]){
+			            bname1[i]='2';
+			            gname1[j]='2';
+			        }
+			    }
+			}
+			
+			
+	}
+}
