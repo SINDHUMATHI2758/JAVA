@@ -28,7 +28,7 @@ class Graph {
 
 	public void bfs(int start) {
 		boolean[] visited=new boolean[vertices];
-		Queue<Integer> q=new LinkedList<>();
+		Queue<Integer> q=new LinkedList<>();//removing from the front and adding from the last
 		visited[start]=true;
 		q.add(start);
 		System.out.println("We are starting bfs from "+start);
