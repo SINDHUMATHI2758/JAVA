@@ -1,0 +1,101 @@
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner SC = new Scanner(System.in);
+		Random r=new Random();
+		System.out.print("Enter team 1: ");
+		String team1=SC.nextLine();
+		System.out.print("Enter team 2: ");
+		String team2=SC.nextLine();
+		System.out.println("------------------------------------");
+		int ans1=r.nextInt(300)+1;
+		int ans2=r.nextInt(300)+1;
+		
+		String [] hint1=new String[3];
+		String [] hint2=new String[3];
+		hint1[0]=ans1>150?"It is greater than 150": "It is less than 150";
+		hint1[1]=ans1%2==0?"It is even":"It is odd";
+		hint1[2]=ans1%5==0?"Its is divisible by 5":"It is not divisible by 5";
+		
+		
+		hint2[0]=ans2>150?"It is greater than 150": "It is less than 150";
+		hint2[1]=ans2%2==0?"It is even":"It is odd";
+		hint2[2]=ans2%5==0?"Its is divisible by 5":"It is not divisible by 5";
+		int count1=0;
+		int count2=0;
+		String ch1;
+		String ch2;
+		
+		
+		System.out.println("Team1");
+		for(int i=0;i<3;i++){
+		    System.out.println("Do you want hint?");
+		    
+		    ch1=SC.nextLine();
+		    
+		    if(ch1.equalsIgnoreCase("Y")){
+		        System.out.println("Hint------>"+i+1+" "+hint1[i]);
+		        count1++;
+		    }
+		    else{
+		        break;
+		    }
+		}
+		System.out.println("------------------------------------");
+		System.out.print("Predict your ans: ");
+		int guess1=SC.nextInt();
+		SC.nextLine();
+		int s1=300-count1*25;
+		s1=s1-Math.abs(ans1-guess1);
+		
+		System.out.println("------------------------------------");
+		
+		
+		
+		
+		
+		
+		System.out.println("Team2");
+		
+			for(int i=0;i<3;i++){
+		    System.out.println("Do you want hint?");
+		    ch2=SC.nextLine();
+		    
+		    if(ch2.equalsIgnoreCase("Y")){
+		        System.out.println("Hint------>"+i+1+" "+hint2[i]);
+		        count2++;
+		    }
+		    else{
+		        break;
+		    }
+		}
+		System.out.println("------------------------------------");
+		System.out.print("Predict your ans: ");
+		int guess2=SC.nextInt();
+		
+		int s2=300-count2*25;
+		s2=s2-Math.abs(ans2-guess2);
+		System.out.println("------------------------------------");
+		System.out.println("Team1 ans is "+ans1);
+		System.out.println("Team1 score is "+s1);
+		System.out.println("------------------------------------");
+		System.out.println("Team2 ans is "+ans2);
+		System.out.println("Team2 score is "+s2);
+		System.out.println("------------------------------------");
+		
+		
+		
+		if(s1==s2){
+		    System.out.println("Tie");
+		}
+		else if(s1>s2){
+		    System.out.println(team1+" wins");
+		}
+		else{
+		    System.out.println(team2+" wins");
+		}
+
+	}
+}
