@@ -1,0 +1,96 @@
+import java.util.*;
+class LList{
+      Node node;
+      Node head;
+    public void insert(int val){
+         Node newNode=new Node(val);
+        if(head==null){
+           
+            head=newNode;
+        }
+        else{
+            newNode.next=head;
+            head=newNode;
+        }
+    }
+    public void display(){
+        Node temp=head;
+        while(temp!=null){
+            System.out.print(temp.data+"--->");
+            temp=temp.next;
+        }
+    }
+  public void inserAtposition(int val,int pos){
+       Node newNode=new Node(val);
+      Node temp=head;
+      
+      if(pos==0){
+          insert(val);
+      }
+      else{
+          for(int i=1;i<pos;i++){
+             
+              if(temp.next==null){
+                  System.out.println("Can't insert");
+                  return;
+              }
+               temp=temp.next;
+              
+          }
+          newNode.next=temp.next;
+          temp.next=newNode;
+          
+      }
+  }
+  public void deletePos(int pos){
+      Node temp=head;
+       if (head == null) {
+        System.out.println("List is empty, nothing to delete.");
+        return;
+    }
+     if (pos == 1) {
+        head = head.next;
+        return;
+    }
+     
+          for(int i=1;i<pos;i++){
+              if(temp.next==null){
+                  System.out.println("Can't insert");
+                  return;
+              }
+               temp=temp.next;
+          }
+             
+          if (temp.next == null) {
+        System.out.println("Position is out of bounds.");
+        return;
+    }
+    temp.next = temp.next.next;
+
+      
+      
+  }
+    class Node{
+        int data;
+        Node next;
+        Node(int val){
+            data=val;
+            next=null;
+            
+        }
+    }
+}
+public class Main
+{
+	public static void main(String[] args) {
+		LList l= new LList();
+		l.insert(100);
+		l.insert(200);
+		l.insert(300);
+		l.insert(400);
+		l.inserAtposition(500,2);
+		l.display();
+		l.deletePos(2);
+		
+	}
+}
