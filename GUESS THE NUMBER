@@ -1,0 +1,95 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> li = new ArrayList<>();
+        Random r = new Random();
+
+        // Generate 5 unique random integers
+        while (li.size() < 5) {
+            int num = r.nextInt(10) + 1;
+            if (!li.contains(num)) {
+                li.add(num);
+            }
+        }
+
+        Scanner SC = new Scanner(System.in);
+        System.out.print("Enter player1 name: ");
+        String n1 = SC.nextLine();
+
+        System.out.print("Enter player2 name: ");
+        String n2 = SC.nextLine();
+
+        System.out.println("Hello " + n1 + " and " + n2);
+        System.out.println("Computer has 5 integers in mind (from 1 to 10). You both have five chances to guess. Ready? (y/n)");
+        String re = SC.nextLine();
+
+        if (!re.equalsIgnoreCase("Y")) {
+            System.out.println("Game cancelled.");
+            return;
+        }
+
+        int guess1, guess2;
+        int s1 = 0, s2 = 0;
+        List<Integer> p1 = new ArrayList<>(); // Player 1's guesses
+        List<Integer> p2 = new ArrayList<>(); // Player 2's guesses
+
+        // Start the game
+        for (int i = 1; i <= 6; i++) {
+            if (i % 2 != 0) { // Player 1's turn
+                System.out.print(n1 + ", guess your choice: ");
+                guess1 = SC.nextInt();
+
+                // Check for duplicate guesses
+                while (p1.contains(guess1) || p2.contains(guess1)) {
+                    System.out.println("Already guessed, try another number.");
+                    guess1 = SC.nextInt();
+                }
+
+                // Add guess to player 1's list and check if it’s correct
+                p1.add(guess1);
+                if (li.contains(guess1)) {
+                    s1++;
+                    System.out.println("Correct!");
+                } else {
+                    System.out.println("Wrong!");
+                }
+
+            } else { // Player 2's turn
+                System.out.print(n2 + ", guess your choice: ");
+                guess2 = SC.nextInt();
+
+                // Check for duplicate guesses
+                while (p1.contains(guess2) || p2.contains(guess2)) {
+                    System.out.println("Already guessed, try another number.");
+                    guess2 = SC.nextInt();
+                }
+
+                // Add guess to player 2's list and check if it’s correct
+                p2.add(guess2);
+                if (li.contains(guess2)) {
+                    s2++;
+                    System.out.println("Correct!");
+                } else {
+                    System.out.println("Wrong!");
+                }
+            }
+        }
+
+        // Display scores and results
+        System.out.println("-------------------SCORE----------------");
+        System.out.println(n1 + ": " + s1);
+        System.out.println(n2 + ": " + s2);
+
+        System.out.println("-------------------RESULT----------------");
+        if (s1 > s2) {
+            System.out.println(n1 + " wins!");
+        } else if (s1 == s2) {
+            System.out.println("It's a tie!");
+        } else {
+            System.out.println(n2 + " wins!");
+        }
+
+        SC.close();
+    }
+}
