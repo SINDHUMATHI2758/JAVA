@@ -1,0 +1,66 @@
+import java.util.*;
+public class Main
+{
+    public static int precedence(char ch){
+        switch(ch){
+            case '+':
+            case '-': return 1;
+            case '*':
+            case '/': return 2;
+            
+        }
+        return -1;
+    }
+    public static int operation(int num1,int num2,char op){
+        switch(op){
+            case '+': return num1+num2;
+            case '-':return num1-num2;
+            case '*':return num1*num2;
+            case '/':return num1/num2;
+        }
+        return 0;
+    }
+    public static int ans(String s){
+        Stack<Integer>num=new Stack<>();
+        Stack<Character>sym=new Stack<>();
+        int i=0;
+        while(i<s.length()){
+            if(Character.isDigit(s.charAt(i))){
+                int a=0;
+                while(i<s.length()&&Character.isDigit(s.charAt(i))){
+                    a=a*10+(s.charAt(i)-'0');
+                    i++;
+                }
+                num.push(a);
+            }
+            else if(s.charAt(i)=='+'||s.charAt(i)=='-'||s.charAt(i)=='/'||s.charAt(i)=='*'){
+                while(!sym.isEmpty() && precedence(sym.peek())>=precedence(s.charAt(i))){
+                    char op=sym.pop();
+                    int num2=num.pop();
+                    int num1=num.pop();
+                    num.push(operation(num1,num2,op));
+                    
+                }
+                 sym.push(s.charAt(i));
+                i++;
+            }
+            else{
+                i++;
+            }
+        }
+            while(!sym.isEmpty()){
+                char op=sym.pop();
+                    int num2=num.pop();
+                    int num1=num.pop();
+                    num.push(operation(num1,num2,op));
+            }
+            
+        
+        return num.peek();
+    }
+	public static void main(String[] args) {
+	String s="17+8-9/2+3*3";
+	int res=ans(s);
+	System.out.println("Result is: "+res);
+	}
+}
