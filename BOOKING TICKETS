@@ -1,0 +1,127 @@
+package TRAVEL;
+import java.util.*;
+public class MASTER {
+      public static void main(String[] args) {
+    	  Scanner SC=new Scanner(System.in);
+    	  ArrayList<TRAIN>trains=new ArrayList<>();
+    	  ArrayList<FILLING>fillings=new ArrayList<>();
+    	  trains.add(new TRAIN(1,true,60));
+    	  trains.add(new TRAIN(2,false,80));
+    	  trains.add(new TRAIN(3,true,2));
+    	  for(TRAIN T:trains) {
+    		  T.display();
+    	  }
+    	  int ch=1;
+    	  while(ch==1) {
+    		  System.out.print("Enter your choice 1 to continue and 2 to display and 3 to exit:");
+    		  ch=SC.nextInt();
+    		  if(ch==1) {
+    			  FILLING fills=new FILLING(SC);
+    			  if(fills.isavailable(trains,fillings)) {
+    				  System.out.println("Booking done successfully");
+    				 fillings.add(fills);
+    			  }
+    			  else {
+    				  System.out.println("Train is full");
+    			  }
+    		  }
+    		  else if(ch==2) {
+    			  int count=0;
+    			  for(TRAIN t:trains) {
+    			  for(FILLING f:fillings) {
+    				  if (f.trainno == t.get_trainno()) {
+                          count++;
+                      }
+    			  }
+    			  System.out.println("Train No: " + t.get_trainno() + ", Bookings: " + count +", Vacant: "+(t.get_cap()-count));
+    				 count=0; 
+    			  }
+    		  }
+    	  }
+    	  SC.close();
+    	  
+      }
+}
+
+
+
+
+
+
+
+
+
+
+
+//CLASS TRAIN
+package TRAVEL;
+public class TRAIN {
+private int tno;
+private boolean ac;
+private int cap;
+TRAIN(int a,boolean b,int c){
+	this.tno=a;
+	this.ac=b;
+	this.cap=c;
+	
+}
+public int get_trainno() {
+	return tno;
+}
+public boolean get_ac() {
+	return ac;
+}
+public int get_cap() {
+	return cap;
+}
+public void display() {
+	System.out.println("----------------------------------");
+	System.out.println("Train No:"+tno);
+	System.out.println("AC??:"+ac);
+	System.out.println("Capacity:"+cap);
+}
+}
+///FILLING
+package TRAVEL;
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+public class FILLING {
+	String name;
+	int trainno;
+	Date date;
+	FILLING(Scanner SC){
+		System.out.print("Enter your name:");
+		name=SC.next();
+		System.out.print("Enter train no:");
+		trainno=SC.nextInt();
+		System.out.print("Enter date(dd-mm-yyyy):");
+		String str=SC.next();
+		SimpleDateFormat s=new SimpleDateFormat("DD-MM-YYYY");
+		try {
+			date=s.parse(str);
+		}
+		catch(ParseException a) {
+			a.printStackTrace();
+			
+		}
+	}
+		public boolean isavailable(ArrayList<TRAIN>trains,ArrayList<FILLING>fillings) {
+			int booked=0;
+			int capacity=0;
+			for(TRAIN train:trains) {
+				if(train.get_trainno()==trainno) {
+					capacity=train.get_cap();
+				}
+			}
+			for(FILLING fill:fillings) {
+				if(fill.date.equals(date)&&fill.trainno==trainno) {
+					booked++;
+				}
+			}
+			return booked<capacity;
+		}
+		
+	}
+
+
