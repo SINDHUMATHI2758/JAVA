@@ -1,0 +1,25 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		String name="Sindhumathi";
+		char a[]=new char[name.length()];
+		for(int i=0; i<name.length(); i++) {
+			a[i]=name.charAt(i);
+		}
+		for(int i=0; i<a.length-1; i++) {
+			for(int j=i+1; j<a.length; j++) {
+				if(a[i]==a[j]) {
+					a[j]='0';
+				}
+			}
+		}
+		StringBuilder res=new StringBuilder();
+		for(int i=0; i<a.length; i++) {
+			if(a[i]!='0') {
+				res.append(a[i]);
+			}
+		}
+		System.out.println(res.toString());
+	}
+}
