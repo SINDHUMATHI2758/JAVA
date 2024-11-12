@@ -1,0 +1,27 @@
+import java.util.*;
+public class Main
+{
+    public static void res(int num){
+        HashMap<Character,Integer> mp=new HashMap<>();
+        String str=Integer.toString(num);
+        
+		for(char ch:str.toCharArray()){
+		    mp.put(ch,mp.getOrDefault(ch,0)+1);
+		}
+		int count=0;
+		for(int a:mp.values()){
+		    if(a==1){
+		        count++;
+		    }
+		}
+		System.out.println(count);
+		
+    }
+	public static void main(String[] args) {
+	    int num=772334251;
+	    res(num);
+		
+		
+		
+	}
+}
