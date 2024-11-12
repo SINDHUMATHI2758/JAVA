@@ -1,0 +1,32 @@
+import java.util.*;
+public class Main
+{
+    public static int sum(int n){
+        int temp=0;
+        int mul=0;
+        while(n!=0){
+            temp=n%10;
+            mul+=temp*temp;
+            n=n/10;
+        }
+        return mul;
+    }
+    public static boolean res(int n){
+        Set<Integer>visited=new HashSet<>();
+       
+        while(n!=1&& !visited.contains(n)){
+            visited.add(n);
+            n=sum(n);
+ 
+        }
+        System.out.println(visited);
+        
+        return n==1;
+        
+    }
+	public static void main(String[] args) {
+		Scanner SC = new Scanner(System.in);
+		int n=SC.nextInt();
+		System.out.println(res(n));
+	}
+}
