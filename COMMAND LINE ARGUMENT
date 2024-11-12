@@ -1,0 +1,25 @@
+/*******************************************************************************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+********************************************************************************************************************************************************/
+
+public class Main
+{
+	public static void main(String[] args) {
+	if(args.length==0){
+	    System.out.println("No command line argumen provided");
+	}
+	else{
+	    int [] num= new int [args.length];
+	    int sum=0;
+	    for(int i=0;i<args.length;i++){
+	        num[i]=Integer.parseInt(args[i]);
+	        sum+=num[i];
+	    }
+	    System.out.println(sum);
+	}
+	}
+}
