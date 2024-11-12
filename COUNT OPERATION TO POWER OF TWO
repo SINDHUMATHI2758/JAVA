@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class Main {
+    
+    public static int call(int n)
+    {
+        if ((n & (n - 1)) == 0) 
+        {
+           
+            return 1;
+        } 
+        else
+        {
+            int ans = 0;
+            while (n > 0) {
+                if (n % 2 == 0)
+                {
+                    n /= 2;
+                } else
+                {
+                    ans++;
+                    n -= 1;
+                }
+            }
+            return ans;
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        Scanner SC = new Scanner(System.in);
+        int n = SC.nextInt();
+        int a = call(n);  
+        System.out.println(a);  
+    }
+}
