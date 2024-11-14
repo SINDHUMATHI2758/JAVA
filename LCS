@@ -16,11 +16,30 @@ public class Main
                 
             }
         }
+        print(dp,s1,s2);
         return dp[n][m];
     }
+    public static void print(int[][] dp,String s1,String s2){
+        int n=s1.length();
+        int m=s2.length();
+        String ans="";
+        while(n>0&&m>0){
+            if(s1.charAt(n-1)==s2.charAt(m-1)){
+                ans+=s1.charAt(n-1);
+                n--;
+                m--;
+            }
+            else if(dp[n-1][m]>dp[n][m-1])  n--;
+            else m++;
+        }
+        System.out.println("LCS String is "+ans);
+    }
 	public static void main(String[] args) {
-		String s1="abaaba";
-		String s2="bbabbab";
-		System.out.println(lcs(s1,s2));
+	    Scanner SC = new Scanner(System.in);
+	    System.out.print("Enter first String: ");
+		String s1=SC.nextLine();
+		System.out.print("Enter second String: ");
+		String s2=SC.nextLine();
+		System.out.println("LCS is length is"+lcs(s1,s2));
 	}
 }
