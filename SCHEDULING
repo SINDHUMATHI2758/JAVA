@@ -1,0 +1,26 @@
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		
+		int teamno=5;
+		int meet=2;
+		String []team={"IND","PAK","AUS","SRI","SA"}; 
+		List<String> ans=new ArrayList<>();
+		for(int i=0;i<teamno;i++){
+		    for(int j=i+1;j<teamno;j++){
+		        for(int k=0;k<meet;k++){
+		            ans.add(team[i]+ " vs "+team[j]);
+		        }
+		    }
+		}
+		Collections.shuffle(ans);
+
+	 
+         int matchNumber = 1;
+        for (String match : ans) {
+            System.out.println("Match " + matchNumber + ": " + match);
+            matchNumber++;
+        }
+	}
+}
