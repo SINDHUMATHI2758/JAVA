@@ -30,7 +30,7 @@ public class Main
                 m--;
             }
             else if(dp[n-1][m]>dp[n][m-1])  n--;
-            else m++;
+            else m--;
         }
         System.out.println("LCS String is "+ans);
     }
