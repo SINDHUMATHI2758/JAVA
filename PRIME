@@ -1,0 +1,39 @@
+import java.util.*;
+
+public class Main
+{
+	public static boolean isprime(int a)
+	{
+		int flag=0;
+		for(int i=2; i<Math.sqrt(a); i++) 
+		{
+			if(a%i==0) 
+			{
+				flag++;
+			}
+		}
+		return flag==0;
+	}
+	public static boolean isodd(int a)
+	{
+		int temp=a%10;
+		int b=a/10;
+		if((b+temp)%2==0)  return true;
+		return false;
+	}
+	public static void main(String[] args) 
+	{
+		for(int i=11; i<100; i++)
+		{
+			isprime(i);
+			if(isprime(i)) 
+			{
+				if(isodd(i)) 
+				{
+					System.out.println(i);
+				}
+
+			}
+		}
+	}
+}
